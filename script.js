@@ -6,17 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     buttons.forEach(button => {
         let timeoutId; // Add this line to store the timeout ID
+        const soundFile = button.getAttribute('data-sound');
+        const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
+        const audio = document.getElementById(audioId);
+        // hack to make sure audio is loaded
+        audio.load();
+        const volume = audio.getAttribute('data-volume');
+        audio.volume = volume;
 
         button.addEventListener(touchOrClick, (e) => {
             // prevent default action to avoid page scroll
             e.preventDefault();
-            const soundFile = button.getAttribute('data-sound');
-            const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
-            const audio = document.getElementById(audioId);
-            // hack to make sure audio is loaded
-            audio.load();
-            const volume = audio.getAttribute('data-volume');
-            audio.volume = volume;
+            // const soundFile = button.getAttribute('data-sound');
+            // const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
+            // const audio = document.getElementById(audioId);
+
 
             // Add 'playing' class to the button
             button.classList.add('playing');
