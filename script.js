@@ -22,7 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const duration = audio.getAttribute('data-duration');
 
             audio.currentTime = 0;
-            audio.play();
+            try {
+                audio.play();
+            } catch (error) {
+                console.error('Error playing audio', error);
+            }
 
             if (duration) {
                 // Clear any existing timeout for this button
