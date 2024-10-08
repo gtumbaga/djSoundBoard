@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CF Pads</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sound-board-container">
+        <div class="sound-board-header">
+            <h1>CF Pads</h1>
+        </div>
+        <div class="sound-board">
+            <button class="sound-button" data-sound="./sounds/djgtraxx.mp3">djgtraxx</button>
+            <button class="sound-button" data-sound="./sounds/djsoloquest.wav">djsoloquest</button>
+            <button class="sound-button" data-sound="./sounds/cfdj.wav">cf</button>
+            <button class="sound-button" data-sound="./sounds/airhorn.wav">Horn</button>
+        </div>
+    </div>
+
+    <!-- Add preloaded audio elements -->
+    <audio id="djgtraxx-audio" src="./sounds/djgtraxx.mp3" preload="auto" data-volume=".7" data-duration="3000"></audio>
+    <audio id="djsoloquest-audio" src="./sounds/djsoloquest.wav" preload="auto" data-volume=".8"></audio>
+    <audio id="cfdj-audio" src="./sounds/cfdj.wav" preload="auto" data-volume=".8"></audio>
+    <audio id="airhorn-audio" src="./sounds/airhorn.wav" preload="auto" data-volume="1" data-duration="2000"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

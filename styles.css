@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff;
+}
+h1 {
+    color: #fff;
+    font-size: 24px;
+}
+
+.sound-board-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #2F2F31;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 7px 8px 20px #555;
+}
+
+.sound-board-header {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.sound-board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;  /* Center items horizontally */
+    align-items: center;    /* Center items vertically */
+}
+
+.sound-button {
+    padding: 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #D6DDE3;
+    box-shadow: inset 0 0 30px #eee;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    width: 43vw;
+    height: 43vw;
+    max-width: 200px;
+    max-height: 200px;
+    display: flex;          /* Add flexbox to center content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
+}
+
+.sound-button.playing {
+    background: radial-gradient(circle at 50% 50%,#FFF6B1, #FFD334, #F2A83F);
+}
