@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(button => {
         let timeoutId; // Add this line to store the timeout ID
 
-        button.addEventListener(touchOrClick, () => {
+        button.addEventListener(touchOrClick, (e) => {
+            // prevent default action to avoid page scroll
+            e.preventDefault();
             const soundFile = button.getAttribute('data-sound');
             const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
             const audio = document.getElementById(audioId);
