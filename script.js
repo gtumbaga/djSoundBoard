@@ -9,8 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const soundFile = button.getAttribute('data-sound');
         const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
         const audio = document.getElementById(audioId);
-        // hack to make sure audio is loaded
+
+        // Preload audio
         audio.load();
+        audio.preload = 'auto';
+
+        // Create a silent buffer and play it to unlock audio playback
+        // const silentBuffer = audio.context.createBuffer(1, 1, 22050);
+        // const source = audio.context.createBufferSource();
+        // source.buffer = silentBuffer;
+        // source.connect(audio.context.destination);
+        // source.start();
+
         const volume = audio.getAttribute('data-volume');
         audio.volume = volume;
 
@@ -30,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             audio.currentTime = 0;
             try {
-                audio.play();
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.error('Error playing audio', error);
+                    });
+                }
             } catch (error) {
                 console.error('Error playing audio', error);
             }
