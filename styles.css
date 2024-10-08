@@ -6,7 +6,10 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #fff;
+    overflow: hidden; /* Add this line to prevent scrolling */
+    flex-direction: column;
 }
+
 h1 {
     color: #fff;
     font-size: 24px;
@@ -58,4 +61,17 @@ h1 {
 
 .sound-button.playing {
     background: radial-gradient(circle at 50% 50%,#FFF6B1, #FFD334, #F2A83F);
+}
+
+small {
+    font-size: 12px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #000;
 }
