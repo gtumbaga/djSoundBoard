@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    const supportsTouch = 'ontouchend' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     const touchOrClick = supportsTouch ? 'touchstart' : 'mousedown';
     console.log('touchOrClick', touchOrClick);
     const buttons = document.querySelectorAll('.sound-button');
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(button => {
         let timeoutId; // Add this line to store the timeout ID
 
-        button.addEventListener(touchOrClick, () => {
+        button.addEventListener(touchOrClick, async () => {
             const soundFile = button.getAttribute('data-sound');
             const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
             const audio = document.getElementById(audioId);
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             audio.currentTime = 0;
             try {
-                audio.play();
+                await audio.play();
             } catch (error) {
                 console.error('Error playing audio', error);
             }
