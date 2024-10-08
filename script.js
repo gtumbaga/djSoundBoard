@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+    const supportsTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     const touchOrClick = supportsTouch ? 'touchstart' : 'mousedown';
     console.log('touchOrClick', touchOrClick);
     const buttons = document.querySelectorAll('.sound-button');
-    let hornTimeout;
 
     buttons.forEach(button => {
         let timeoutId; // Add this line to store the timeout ID
