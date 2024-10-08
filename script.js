@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     buttons.forEach(button => {
         let timeoutId; // Add this line to store the timeout ID
 
-        button.addEventListener(touchOrClick, async () => {
+        button.addEventListener(touchOrClick, () => {
             const soundFile = button.getAttribute('data-sound');
             const audioId = soundFile.split('/').pop().split('.')[0] + '-audio';
             const audio = document.getElementById(audioId);
+            // hack to make sure audio is loaded
+            audio.load();
             const volume = audio.getAttribute('data-volume');
             audio.volume = volume;
 
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             audio.currentTime = 0;
             try {
-                await audio.play();
+                audio.play();
             } catch (error) {
                 console.error('Error playing audio', error);
             }
