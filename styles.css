@@ -9,6 +9,13 @@ body {
     overflow: hidden; /* Add this line to prevent scrolling */
     flex-direction: column;
 }
+.noSelect {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: none;
+}
 
 h1 {
     color: #fff;
@@ -32,11 +39,6 @@ h1 {
 }
 
 #bpm-display {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    pointer-events: none;
     font-size: 24px;
     color: #393E2B;
     background-color: #A3AD88;
@@ -131,9 +133,4 @@ small {
     right: 0;
     text-align: center;
     color: #000;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    pointer-events: none;
 }

@@ -7,12 +7,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <title>CF Pads</title>
-    <link rel="stylesheet" href="styles.css?v=1.0.16">
+    <link rel="stylesheet" href="styles.css?v=1.0.17">
 </head>
 <body>
     <div class="sound-board-container">
         <div class="sound-board-header">
-            <h1>CF Pads</h1>
+            <h1 class="noSelect">CF Pads</h1>
         </div>
         <div class="sound-board">
             <button id="btn-01" class="sound-button button" data-sound="./sounds/djgtraxx.mp3">djgtraxx <span class="key">Z</span></button>
@@ -22,7 +22,7 @@
         </div>
         <div class="sound-board bottom">
             <button id="btn-bpm" class="button">BPM<span class="key">B</span></button>
-            <div id="bpm-display" class="bpm-display">0</div>
+            <div id="bpm-display" class="bpm-display noSelect">0</div>
         </div>
     </div>
 
@@ -47,9 +47,9 @@
         }
     });
     </script>
-    <script src="script.js?v=1.0.16"></script>
-    <div class="footer">
-        <small>v1.0.16</small>
+    <script src="script.js?v=1.0.17"></script>
+    <div class="footer noSelect">
+        <small>v1.0.17</small>
     </div>
 </body>
 </html>
