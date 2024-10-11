@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <title>CF Pads</title>
-    <link rel="stylesheet" href="styles.css?v=1.0.13">
+    <link rel="stylesheet" href="styles.css?v=1.0.14">
 </head>
 <body>
     <div class="sound-board-container">
@@ -15,10 +15,14 @@
             <h1>CF Pads</h1>
         </div>
         <div class="sound-board">
-            <button class="sound-button" data-sound="./sounds/djgtraxx.mp3">djgtraxx</button>
-            <button class="sound-button" data-sound="./sounds/djsoloquest.wav">djsoloquest</button>
-            <button class="sound-button" data-sound="./sounds/cfdj.wav">cf</button>
-            <button class="sound-button" data-sound="./sounds/airhorn.wav">Horn</button>
+            <button id="btn-01" class="sound-button button" data-sound="./sounds/djgtraxx.mp3">djgtraxx <span class="key">Z</span></button>
+            <button id="btn-02" class="sound-button button" data-sound="./sounds/djsoloquest.wav">djsoloquest <span class="key">X</span></button>
+            <button id="btn-03" class="sound-button button" data-sound="./sounds/cfdj.wav">cf <span class="key">C</span></button>
+            <button id="btn-04" class="sound-button button" data-sound="./sounds/airhorn.wav">Horn <span class="key">V</span></button>
+        </div>
+        <div class="sound-board bottom">
+            <button id="btn-bpm" class="button">BPM<span class="key">B</span></button>
+            <div id="bpm-display" class="bpm-display">0</div>
         </div>
     </div>
 
@@ -28,9 +32,24 @@
     <audio id="cfdj-audio" src="./sounds/cfdj.wav" preload="auto" data-volume=".8"></audio>
     <audio id="airhorn-audio" src="./sounds/airhorn.wav" preload="auto" data-volume="1" data-duration="2000"></audio>
 
-    <script src="script.js?v=1.0.13"></script>
+    <script>
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'z' || event.key === 'Z') {
+            document.getElementById('btn-01').dispatchEvent(new Event('mousedown'));
+        } else if (event.key === 'x' || event.key === 'X') {
+            document.getElementById('btn-02').dispatchEvent(new Event('mousedown'));
+        } else if (event.key === 'c' || event.key === 'C') {
+            document.getElementById('btn-03').dispatchEvent(new Event('mousedown'));
+        } else if (event.key === 'v' || event.key === 'V') {
+            document.getElementById('btn-04').dispatchEvent(new Event('mousedown'));
+        } else if (event.key === 'b' || event.key === 'B') {
+            document.getElementById('btn-bpm').dispatchEvent(new Event('mousedown'));
+        }
+    });
+    </script>
+    <script src="script.js?v=1.0.14"></script>
     <div class="footer">
-        <small>v1.0.13</small>
+        <small>v1.0.14</small>
     </div>
 </body>
 </html>

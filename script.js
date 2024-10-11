@@ -1,7 +1,84 @@
+// globals
+let bpm = 0;
+let lastClickTime = 0;
+let clickCount = 0;
+let totalInterval = 0;
+let resetTimeout;
+let bpmTimeout;
+
+const resetBpmCount = () => {
+    bpm = 0;
+    lastClickTime = 0;
+    clickCount = 0;
+    totalInterval = 0;
+    // document.getElementById('btn-bpm').classList.remove('active');
+    document.getElementById('bpm-display').classList.remove('active');
+};
+
+const bpmCount = () => {
+    const bpmButton = document.getElementById('btn-bpm');
+    const bpmDisplay = document.getElementById('bpm-display');
+    if (!bpmDisplay.classList.contains('active')) {
+        bpmDisplay.innerHTML = 0;
+        bpmDisplay.classList.add('active');
+    }
+    bpmButton.classList.add('active');
+    clearTimeout(bpmTimeout);
+    bpmTimeout = setTimeout(() => {
+        bpmButton.classList.remove('active');
+    }, 500);
+
+
+    const currentTime = Date.now();
+
+    // Clear existing timeout and set a new one
+    clearTimeout(resetTimeout);
+    resetTimeout = setTimeout(resetBpmCount, 1000);
+
+    clickCount++;
+
+    if (clickCount === 1) {
+        lastClickTime = currentTime;
+        return null;
+    }
+
+    const elapsedTime = currentTime - lastClickTime;
+    totalInterval += elapsedTime;
+
+    if (totalInterval >= 1000) { // Calculate BPM after at least 1 second
+        const averageBpm = Math.round((clickCount - 1) / (totalInterval / 60000));
+
+        // Update the running average
+        bpm = bpm === 0 ? averageBpm : Math.round((bpm + averageBpm) / 2);
+
+        // Reset for next calculation
+        lastClickTime = currentTime;
+        clickCount = 1;
+        totalInterval = 0;
+
+        return bpm;
+    }
+
+    lastClickTime = currentTime;
+    return null; // Return null if not enough time has passed to calculate BPM
+};
+
+const handleBpmClick = () => {
+    const bpm = bpmCount();
+    const bpmDisplay = document.getElementById('bpm-display');
+    if (bpm) {
+        bpmDisplay.innerHTML = `${bpm} / ${Math.round(bpm/2)}`;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const supportsTouch = 'ontouchend' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     const touchOrClick = supportsTouch ? 'touchstart' : 'mousedown';
     console.log('touchOrClick', touchOrClick);
+
+    const bpmButton = document.getElementById('btn-bpm');
+    bpmButton.addEventListener(touchOrClick, handleBpmClick);
+
     const buttons = document.querySelectorAll('.sound-button');
 
     buttons.forEach(button => {
