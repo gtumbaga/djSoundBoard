@@ -12,21 +12,25 @@ const resetBpmCount = () => {
     clickCount = 0;
     totalInterval = 0;
     // document.getElementById('btn-bpm').classList.remove('active');
-    document.getElementById('bpm-display').classList.remove('active');
+    const bpmDisplay = document.getElementById('bpm-display');
+    bpmDisplay.classList.remove('active');
+    if (bpmDisplay.innerHTML === 'calc...') {
+        bpmDisplay.innerHTML = '0';
+    }
 };
 
 const bpmCount = () => {
     const bpmButton = document.getElementById('btn-bpm');
     const bpmDisplay = document.getElementById('bpm-display');
     if (!bpmDisplay.classList.contains('active')) {
-        bpmDisplay.innerHTML = 0;
+        bpmDisplay.innerHTML = 'calc...';
         bpmDisplay.classList.add('active');
     }
     bpmButton.classList.add('active');
-    clearTimeout(bpmTimeout);
-    bpmTimeout = setTimeout(() => {
-        bpmButton.classList.remove('active');
-    }, 500);
+    // clearTimeout(bpmTimeout);
+    // bpmTimeout = setTimeout(() => {
+    //     bpmButton.classList.remove('active');
+    // }, 500);
 
 
     const currentTime = Date.now();
@@ -74,10 +78,14 @@ const handleBpmClick = () => {
 document.addEventListener('DOMContentLoaded', () => {
     const supportsTouch = 'ontouchend' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
     const touchOrClick = supportsTouch ? 'touchstart' : 'mousedown';
+    const touchOrClickDone = supportsTouch ? 'touchend' : 'mouseup';
     console.log('touchOrClick', touchOrClick);
 
     const bpmButton = document.getElementById('btn-bpm');
     bpmButton.addEventListener(touchOrClick, handleBpmClick);
+    bpmButton.addEventListener(touchOrClickDone, () => {
+        bpmButton.classList.remove('active');
+    });
 
     const buttons = document.querySelectorAll('.sound-button');
 
