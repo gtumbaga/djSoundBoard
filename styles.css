@@ -8,6 +8,11 @@ body {
     background-color: #fff;
     overflow: hidden; /* Add this line to prevent scrolling */
     flex-direction: column;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 body * {
     user-select: none;
