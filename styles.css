@@ -9,6 +9,12 @@ body {
     overflow: hidden; /* Add this line to prevent scrolling */
     flex-direction: column;
 }
+body * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 .noSelect {
     user-select: none;
     -webkit-user-select: none;
